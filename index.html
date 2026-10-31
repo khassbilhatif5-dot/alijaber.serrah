@@ -227,7 +227,7 @@ blockquote { position: relative; }
 blockquote { padding-top: 30px; }
 .share { font-family: var(--f-label); font-size: 14px; color: var(--accent); background: transparent; border: 1px solid var(--accent); border-radius: 3px; padding: 5px 16px; cursor: pointer; margin-top: 28px; line-height: 1.6; }
 @keyframes seerahIn { from { opacity: .0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-section.view:not([hidden]) { animation: seerahIn .35s ease-out; }
+section.view:not([hidden]) { animation: none; }
 @media (prefers-reduced-motion: reduce) { section.view:not([hidden]) { animation: none; } .prog { transition: none; } }
 
 .bartoggle { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); z-index: 9; font-size: 13px; line-height: 1; color: var(--accent); background: var(--surface); border: 1px solid var(--rule); border-top: 0; border-radius: 0 0 8px 8px; padding: 3px 22px 4px; cursor: pointer; }
@@ -325,7 +325,7 @@ html.splash { overflow: hidden; }
 
 @property --accent { syntax: '<color>'; inherits: true; initial-value: #0e5b47; }
 @property --gold { syntax: '<color>'; inherits: true; initial-value: #9a7425; }
-:root { transition: --accent .9s ease, --gold .9s ease; }
+:root { transition: none; }
 :root[data-stage="haram"] { --accent: #7d5a0e; --gold: #94701d; }
 :root[data-stage="canada"] { --accent: #1d5c8f; }
 @media (prefers-color-scheme: dark) {
@@ -428,13 +428,6 @@ footer::before { content: "\2766"; display: block; text-align: center; font-size
 .tlc-t { font-family: var(--f-label); font-size: clamp(12px, calc(var(--size) * .036), 16px); line-height: 1.7; color: var(--muted); max-width: 100%; }
 @media (min-width: 420px) { .tlc-b { font-size: 16px; min-width: 42px; } }
 
-.chapcard { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; pointer-events: none; opacity: 0; transition: opacity .3s ease; }
-.chapcard.on { opacity: 1; }
-.cc-in { min-width: min(78vw, 340px); max-width: 86vw; text-align: center; padding: 22px 30px 16px; background: color-mix(in srgb, var(--surface) 94%, transparent); border: 1px solid var(--gold); border-radius: 14px; outline: 1px solid color-mix(in srgb, var(--gold) 40%, transparent); outline-offset: 5px; box-shadow: 0 24px 60px -24px rgba(0, 0, 0, .55); color: var(--accent); transform: scale(.94); transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
-.chapcard.on .cc-in { transform: none; }
-.cc-no { font-family: var(--f-label); font-size: 13px; letter-spacing: .1em; color: var(--gold); }
-.cc-t { font-family: var(--f-display); font-weight: 700; font-size: 26px; line-height: 1.7; color: var(--accent); }
-.cc-o { width: 120px; height: 14px; color: var(--gold); margin-top: 4px; }
 
 body::after { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; --g: color-mix(in srgb, var(--gold) 11%, transparent); }
 [data-stage="medina"] body::after { background: repeating-linear-gradient(45deg, var(--g) 0 1px, transparent 1px 38px), repeating-linear-gradient(-45deg, var(--g) 0 1px, transparent 1px 38px); }
@@ -452,14 +445,14 @@ html.reading main.wrap::after { content: ""; position: absolute; top: 0; left: 0
 html.reading section.view::before { display: none; }
 
 body { overflow-x: clip; }
-@keyframes flipF { from { opacity: 0; transform: perspective(1500px) rotateY(64deg) translateX(-24px); } to { opacity: 1; transform: none; } }
-@keyframes flipB { from { opacity: 0; transform: perspective(1500px) rotateY(-64deg) translateX(24px); } to { opacity: 1; transform: none; } }
-section.view.flip-f:not([hidden]) { transform-origin: 100% 50%; animation: flipF .8s cubic-bezier(.2, .7, .2, 1) backwards; }
-section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .8s cubic-bezier(.2, .7, .2, 1) backwards; }
+@keyframes flipF { from { opacity: 0; transform: perspective(1200px) translate3d(-16px, 0, 0) rotateY(10deg); } to { opacity: 1; transform: perspective(1200px) translate3d(0, 0, 0) rotateY(0deg); } }
+@keyframes flipB { from { opacity: 0; transform: perspective(1200px) translate3d(16px, 0, 0) rotateY(-10deg); } to { opacity: 1; transform: perspective(1200px) translate3d(0, 0, 0) rotateY(0deg); } }
+section.view.flip-f:not([hidden]) { transform-origin: 100% 50%; animation: flipF .3s ease-out backwards; }
+section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3s ease-out backwards; }
 
 .dropword { font-size: 2.15em; line-height: .85; padding-inline-end: .1em; background: linear-gradient(160deg, var(--gold) 0%, color-mix(in srgb, var(--gold) 50%, #fff) 42%, var(--accent) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
 @supports not ((background-clip: text) or (-webkit-background-clip: text)) { .dropword { color: var(--gold); -webkit-text-fill-color: currentColor; } }
-@media (prefers-reduced-motion: reduce) { .tlc-ring, .tlc-b, .chapcard, .cc-in { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .tlc-ring, .tlc-b { transition: none; } }
 </style>
 
 </head>
@@ -1230,7 +1223,6 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .8
 
 </main>
 
-<div class="chapcard" id="chapCard" aria-hidden="true"><div class="cc-in"><div class="cc-no" id="ccNo"></div><div class="cc-t" id="ccT"></div><svg class="cc-o" viewBox="0 0 120 14" xmlns="http://www.w3.org/2000/svg" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 7H46M74 7H120"/><path d="M60 1l6 6-6 6-6-6z" fill="currentColor" fill-opacity=".2"/></g></svg></div></div>
 
 <footer>
   سيرة الشيخ الدكتور علي بن عبدالله بن علي جابر، رحمه الله<br>
@@ -1745,9 +1737,11 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .8
     var pa = petal(62, 150, o.big[1]), pb = petal(108, 146, o.small[1]);
     for (k = 0; k < o.big[0]; k++) h += '<path class="m-fa" d="' + pa + '" transform="rotate(' + f(k * 360 / o.big[0]) + ')"/>';
     for (k = 0; k < o.small[0]; k++) h += '<path class="m-g" d="' + pb + '" transform="rotate(' + f(k * 360 / o.small[0] + 180 / o.small[0]) + ')"/>';
+    if (o.ros) for (k = 0; k < o.ros[0]; k++) { var rp = pt(o.ros[1], k * 360 / o.ros[0]); h += '<circle class="m-g" cx="' + f(rp[0]) + '" cy="' + f(rp[1]) + '" r="' + o.ros[2] + '"/>'; }
     h += '</g><g class="m-l3"><circle class="m-g" r="106"/>';
     h += '<path class="m-a" d="' + stepStar(o.s1[0], o.s1[1], o.s1[2]) + '"/>';
     h += '<path class="m-a" d="' + stepStar(o.s2[0], o.s2[1], o.s2[2]) + '"/>';
+    if (o.poly) h += '<path class="m-g" d="' + stepStar(o.poly, 1, 92) + '"/>';
     var pc = petal(16, 58, 13);
     for (k = 0; k < o.inner; k++) h += '<path class="m-fg" d="' + pc + '" transform="rotate(' + f(k * 360 / o.inner + 180 / o.inner) + ')"/>';
     h += '<circle class="m-g" r="24"/><circle class="m-core" r="9"/><circle class="m-hole" r="4"/></g></svg>';
@@ -1755,13 +1749,21 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .8
   }
   var VARIANT = {
     medina: { star: [24, 187, 163], dots: 24, big: [16, 24], small: [16, 9], s1: [12, 5, 106], s2: [8, 3, 66], inner: 8 },
-    haram:  { star: [16, 187, 156], dots: 16, big: [12, 30], small: [12, 11], s1: [10, 3, 106], s2: [8, 3, 66], inner: 10 },
-    canada: { star: [32, 187, 173], dots: 32, big: [8, 44], small: [8, 14], s1: [16, 7, 106], s2: [8, 3, 66], inner: 8 }
+    haram:  { star: [24, 187, 163], dots: 24, big: [12, 30], small: [12, 11], s1: [12, 5, 106], s2: [8, 3, 66], inner: 12, poly: 8 },
+    canada: { star: [6, 187, 120], dots: 36, big: [6, 50], small: [12, 10], s1: [12, 5, 106], s2: [6, 1, 66], inner: 6, ros: [6, 132, 16] },
+    nasab:  { star: [12, 187, 150], dots: 12, big: [12, 34], small: [12, 12], s1: [12, 5, 106], s2: [6, 1, 66], inner: 6, ros: [12, 128, 10] },
+    hifz:   { star: [8, 187, 140], dots: 8, big: [8, 40], small: [8, 16], s1: [8, 3, 106], s2: [8, 3, 66], inner: 8, poly: 4 },
+    ilm:    { star: [10, 187, 152], dots: 20, big: [10, 36], small: [20, 8], s1: [10, 3, 106], s2: [5, 2, 66], inner: 10 },
+    malik:  { star: [16, 187, 156], dots: 16, big: [16, 20], small: [16, 9], s1: [16, 7, 106], s2: [8, 3, 66], inner: 16, ros: [16, 126, 7] },
+    athar:  { star: [14, 187, 158], dots: 14, big: [14, 26], small: [14, 10], s1: [14, 3, 106], s2: [7, 2, 66], inner: 7 },
+    fikr:   { star: [9, 187, 150], dots: 18, big: [9, 38], small: [18, 9], s1: [9, 2, 106], s2: [9, 4, 66], inner: 9, poly: 3 },
+    khitam: { star: [7, 187, 140], dots: 7, big: [7, 44], small: [7, 16], s1: [7, 2, 106], s2: [7, 3, 66], inner: 7 },
+    timeline: { star: [20, 187, 166], dots: 40, big: [20, 22], small: [20, 8], s1: [20, 9, 106], s2: [10, 3, 66], inner: 10, ros: [20, 130, 6] }
   };
   [].forEach.call(document.querySelectorAll('section.view'), function (sec) {
     var name = sec.getAttribute('data-view'); if (name === 'intro') return;
     var box = document.createElement('div'); box.className = 'm-bg m-sec'; box.setAttribute('aria-hidden', 'true');
-    box.innerHTML = build(VARIANT[STAGE[name] || 'medina']);
+    box.innerHTML = build(VARIANT[name] || VARIANT[STAGE[name] || 'medina']);
     sec.insertBefore(box, sec.firstChild);
   });
 
@@ -1780,6 +1782,7 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .8
     var last = performance.now(), lastY = window.scrollY, sv = 0;
     (function tick(now) {
       var dt = Math.min(0.1, (now - last) / 1000); last = now;
+      if (window.seerahBusy) { requestAnimationFrame(tick); return; }
       var y = window.scrollY, dy = Math.abs(y - lastY); lastY = y;
       sv += ((dy / Math.max(dt, 0.001)) - sv) * (1 - Math.exp(-dt / 0.25));
       var want = Math.max(target, 1 + Math.min(11, sv / 140));
@@ -1818,24 +1821,16 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .8
 (function () {
   var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
   var names = ['intro','nasab','hifz','ilm','malik','haram','bada','athar','fikr','khitam','timeline'];
-  var card = document.getElementById('chapCard'), no = document.getElementById('ccNo'), tt = document.getElementById('ccT');
   var cur0 = document.querySelector('section.view:not([hidden])');
-  var last = cur0 ? cur0.getAttribute('data-view') : 'intro', hide;
+  var last = cur0 ? cur0.getAttribute('data-view') : 'intro', busy;
   document.addEventListener('seerah:view', function (e) {
     var name = e.detail; if (!name || name === last) return;
     var from = names.indexOf(last), to = names.indexOf(name); last = name;
-    var sec = document.getElementById('v-' + name); if (!sec) return;
-    if (reduce) return;
+    var sec = document.getElementById('v-' + name); if (!sec || reduce) return;
+    window.seerahBusy = true; clearTimeout(busy);
     sec.classList.remove('flip-f', 'flip-b'); void sec.offsetWidth;
     var cls = to >= from ? 'flip-f' : 'flip-b'; sec.classList.add(cls);
-    setTimeout(function () { sec.classList.remove(cls); }, 900);
-    var tab = document.querySelector('.tabs a[data-v="' + name + '"]');
-    var label = tab ? tab.textContent.trim() : '';
-    var cn = sec.querySelector('.chap-no'), h2 = sec.querySelector('h2');
-    no.textContent = cn ? cn.textContent.trim() : 'سيرة الشيخ علي جابر';
-    tt.textContent = h2 ? h2.textContent.trim() : label;
-    card.classList.add('on'); clearTimeout(hide);
-    hide = setTimeout(function () { card.classList.remove('on'); }, 1050);
+    busy = setTimeout(function () { sec.classList.remove(cls); window.seerahBusy = false; }, 380);
   });
 })();
 </script>
