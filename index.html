@@ -14,7 +14,11 @@
 <meta property="og:site_name" content="سيرة الشيخ علي جابر">
 <meta property="og:title" content="سيرة الشيخ علي جابر | إمام المسجد الحرام">
 <meta property="og:description" content="سيرة الشيخ الدكتور علي بن عبدالله جابر، إمام المسجد الحرام (١٣٧٣–١٤٢٦ هـ): نشأته في المدينة المنورة، حفظه للقرآن، طلبه للعلم، إمامته في الحرم المكي، تلاواته ومواقفه، وخط زمني تفاعلي لحياته.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="1200">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="og-image.png">
 <meta name="twitter:title" content="سيرة الشيخ علي جابر | إمام المسجد الحرام">
 <meta name="twitter:description" content="سيرة الشيخ الدكتور علي بن عبدالله جابر، إمام المسجد الحرام (١٣٧٣–١٤٢٦ هـ): نشأته في المدينة المنورة، حفظه للقرآن، طلبه للعلم، إمامته في الحرم المكي، تلاواته ومواقفه، وخط زمني تفاعلي لحياته.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 512 512%22%3E%3Crect width=%22512%22 height=%22512%22 rx=%2296%22 fill=%22%230e5b47%22/%3E%3Cg transform=%22translate%28256 256%29%22 fill=%22none%22 stroke-linejoin=%22round%22%3E%3Ccircle r=%22214%22 stroke=%22%23d2a94d%22 stroke-width=%226%22 opacity=%22.7%22/%3E%3Crect x=%22-128%22 y=%22-128%22 width=%22256%22 height=%22256%22 stroke=%22%23d2a94d%22 stroke-width=%2214%22/%3E%3Crect x=%22-128%22 y=%22-128%22 width=%22256%22 height=%22256%22 stroke=%22%23d2a94d%22 stroke-width=%2214%22 transform=%22rotate%2845%29%22/%3E%3Ccircle r=%2292%22 stroke=%22%23d9e6df%22 stroke-width=%228%22/%3E%3Cg stroke=%22%23d9e6df%22 stroke-width=%228%22%3E%3Cellipse rx=%2222%22 ry=%2262%22 cy=%22-62%22 transform=%22rotate%280%29%22/%3E%3Cellipse rx=%2222%22 ry=%2262%22 cy=%22-62%22 transform=%22rotate%2845%29%22/%3E%3Cellipse rx=%2222%22 ry=%2262%22 cy=%22-62%22 transform=%22rotate%2890%29%22/%3E%3Cellipse rx=%2222%22 ry=%2262%22 cy=%22-62%22 transform=%22rotate%28135%29%22/%3E%3Cellipse rx=%2222%22 ry=%2262%22 cy=%22-62%22 transform=%22rotate%28180%29%22/%3E%3Cellipse rx=%2222%22 ry=%2262%22 cy=%22-62%22 transform=%22rotate%28225%29%22/%3E%3Cellipse rx=%2222%22 ry=%2262%22 cy=%22-62%22 transform=%22rotate%28270%29%22/%3E%3Cellipse rx=%2222%22 ry=%2262%22 cy=%22-62%22 transform=%22rotate%28315%29%22/%3E%3C/g%3E%3Ccircle r=%2216%22 fill=%22%23d2a94d%22 stroke=%22none%22/%3E%3C/g%3E%3C/svg%3E">
@@ -416,6 +420,10 @@ blockquote::before { content: "\201D"; position: absolute; top: -6px; inset-inli
 footer { position: relative; padding-top: 28px; }
 footer::before { content: "\2766"; display: block; text-align: center; font-size: 22px; color: var(--gold); margin-bottom: 10px; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .tl-item:hover { transform: none; } }
+
+.image-box { width: min(240px, 62vw); aspect-ratio: 1; margin: 18px auto 6px; border-radius: 22px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent); box-shadow: 0 14px 34px -18px color-mix(in srgb, var(--fg) 55%, transparent); }
+.image-box[hidden] { display: none; }
+.image-box img { display: block; width: 100%; height: 100%; object-fit: cover; }
 </style>
 
 </head>
@@ -515,6 +523,10 @@ footer::before { content: "\2766"; display: block; text-align: center; font-size
     <p class="name">رحمه الله</p>
     <div class="years"><span>١٣٧٣ هـ</span><span>—</span><span>١٤٢٦ هـ</span></div>
   </header>
+
+  <div class="image-box">
+    <img src="image.png" alt="سيرة إمام المسجد الحرام" onerror="this.closest('.image-box').hidden=true">
+  </div>
 
   <p class="basmala">بسم الله الرحمن الرحيم</p>
   <div class="lead">
