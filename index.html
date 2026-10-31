@@ -366,6 +366,37 @@ h3 { display: block; width: fit-content; max-width: 100%; }
     -webkit-text-fill-color: transparent; color: transparent;
   }
 }
+
+.media-row { display: flex; flex-wrap: wrap; gap: 8px; margin-block: 6px 14px; }
+a.media { display: inline-flex; align-items: center; gap: 9px; font-family: var(--f-label); font-size: 14px; line-height: 1.6; text-decoration: none; color: var(--accent); padding: 4px 14px; border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent); border-radius: 999px; background: color-mix(in srgb, var(--accent) 6%, transparent); transition: background .2s ease, border-color .2s ease; }
+a.media:hover { background: color-mix(in srgb, var(--accent) 14%, transparent); border-color: var(--accent); }
+a.media::before { content: ""; flex: none; }
+a.media.vid::before { width: 0; height: 0; border-block: 5px solid transparent; border-left: 8px solid currentColor; }
+a.media.aud::before { width: 14px; height: 12px; background: linear-gradient(currentColor, currentColor) 0 100% / 3px 6px no-repeat, linear-gradient(currentColor, currentColor) 5.5px 100% / 3px 12px no-repeat, linear-gradient(currentColor, currentColor) 11px 100% / 3px 9px no-repeat; }
+.soon { display: inline-block; color: var(--muted); font-family: var(--f-label); font-size: 14px; padding: 3px 14px; border: 1px dashed color-mix(in srgb, var(--gold) 60%, transparent); border-radius: 999px; background: color-mix(in srgb, var(--gold) 7%, transparent); }
+::selection { background: color-mix(in srgb, var(--gold) 35%, transparent); }
+a { transition: color .2s ease; }
+.tl-links { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.tl-links [hidden] { display: none; }
+.when > div:not(.yr) { position: relative; border-inline-start: 1px solid color-mix(in srgb, var(--gold) 40%, transparent); padding-inline-start: 20px; }
+.when > div:not(.yr)::before { content: ""; position: absolute; top: 16px; inset-inline-start: -5px; width: 9px; height: 9px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 0 3px var(--bg); }
+@media (max-width: 520px) { .when > div:not(.yr) { border-inline-start: 0; padding-inline-start: 0; } .when > div:not(.yr)::before { display: none; } }
+
+/* polish v2 */
+html { scroll-behavior: smooth; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+blockquote { position: relative; box-shadow: 0 6px 22px -14px color-mix(in srgb, var(--fg) 40%, transparent); border-radius: 6px; }
+blockquote::before { content: "\201D"; position: absolute; top: -6px; inset-inline-end: 12px; font-family: "Amiri", serif; font-size: 54px; line-height: 1; color: color-mix(in srgb, var(--gold) 55%, transparent); pointer-events: none; }
+.when h3 { position: relative; padding-bottom: 6px; }
+.when h3::after { content: ""; display: block; width: 36px; height: 2px; margin-top: 6px; border-radius: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
+.tl-detail { border-radius: 12px; box-shadow: 0 10px 30px -18px color-mix(in srgb, var(--fg) 50%, transparent); }
+.tl-item { transition: transform .2s ease; }
+.tl-item:hover { transform: translateY(-2px); }
+.tabs a { transition: background .2s ease, color .2s ease; }
+.fig .arch { box-shadow: 0 14px 34px -20px color-mix(in srgb, var(--fg) 55%, transparent); }
+footer { position: relative; padding-top: 28px; }
+footer::before { content: "\2766"; display: block; text-align: center; font-size: 22px; color: var(--gold); margin-bottom: 10px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .tl-item:hover { transform: none; } }
 </style>
 
 </head>
@@ -728,7 +759,7 @@ h3 { display: block; width: fit-content; max-width: 100%; }
   <p>ووصل الشيخ إلى قصر الصفا وأفطر مع الملك خالد، وكانت هناك وفود لدى الملك في ضيافته، من بينهم الرئيس الباكستاني الراحل ضياء الحق الذي قام وعانق الشيخ علي جابر. وعندها أمر الملك خالد الشيخ علي أن يتهيأ ليؤم المصلين هذه الليلة في المسجد الحرام.</p>
   <p>وبعد الإفطار وقرب وقت العشاء توجه الملك والوفود إلى المسجد الحرام وأدوا صلاة العشاء، ثم تقدم الشيخ علي الحذيفي وصلى العشر ركعات الأولى من التراويح. وبعدها أمر الملك خالد الشيخ علي جابر أن يتم الثلاث عشرة ركعة الباقية، فتقدم الشيخ علي وبدأ بصوت جهوري ونغمة مميزة فريدة تأخذ بالألباب، وقرأ من آخر سورة الصافات إلى منتصف سورة الزمر، حتى رفع صوته وصدح في آخرها بقوة وهيبة عند قوله تعالى: <span class="ayah">﴿الحمد لله بل أكثرهم لا يعلمون. إنك ميت وإنهم ميتون﴾</span>، وكأن الناس تسمعها لأول مرة.</p>
   <p>ولعل في ذلك حكمة إلهية وإشارة تنبئ بأن الملك لن يدرك رمضان من العام القادم، حيث وافته المنية بعد أحد عشر شهراً، في آخر شعبان عام ١٤٠٢ هـ.</p>
-  <p class="link-line"><a href="http://www.alijaber.net/ppt/AliJaber_PPT_CD_full/alijaber_azzumar_1401.mp3" target="_blank" rel="noopener">استمع: تلاوة نادرة في أول ليلة يؤم فيها بالمسجد الحرام، ٢٣-٩-١٤٠١ هـ</a></p>
+  <p class="link-line media-row"><a class="media aud" href="http://www.alijaber.net/ppt/AliJaber_PPT_CD_full/alijaber_azzumar_1401.mp3" target="_blank" rel="noopener">استمع: تلاوة نادرة في أول ليلة يؤم فيها بالمسجد الحرام، ٢٣-٩-١٤٠١ هـ</a></p>
 
   <h3>ليلة تعرف الناس على الصوت الجديد</h3>
   <p>انتهت صلاة التراويح تلك الليلة، لكن ابتدأت أحداث كثيرة. صوت جديد مميز يصدح في أرجاء المسجد الحرام بصورة مفاجئة، وبعد التسليمة الأولى قام الناس فوراً ووجوههم صوب الإمام يتساءلون: من هذا المبدع؟! وبعد الصلاة اجتمعوا عليه ليسلموا ويصافحوه ويعانقوه، حتى أحاط به رجال الأمن وأخرجوه من بينهم.</p>
@@ -752,7 +783,7 @@ h3 { display: block; width: fit-content; max-width: 100%; }
   <h3>صلاة الفجر الجهرية</h3>
   <p>بعد صدور قرار التعيين وجهته رئاسة شؤون الحرمين بإمامة المصلين لصلاة العصر. فاستغرب الناس ذلك وافتقدوا صوت قراءته، فطلبوا من الملك خالد أن يمكنه من صلاة جهرية. وذكر أن الرئاسة علّلت تعيينه لصلاة العصر بالتزام أئمة كبار لفرضي المغرب والعشاء منذ سنوات طويلة، فجاء توجيه الملك خالد بتمكين الشيخ علي جابر من إمامة صلاة الفجر بالمسجد الحرام.</p>
   <p>كما وجه جلالته الرئاسة بشراء سكن مناسب للشيخ قرب المسجد الحرام، إلا أن ذلك لم يتم، وكان الشيخ يستأجر للسكن في مكة طيلة فترة إمامته الرسمية.</p>
-  <p class="link-line"><a href="http://www.alijaber.net/audio/ali_jaber_alnahl1402.mp3" target="_blank" rel="noopener">استمع: مقطع قديم من البث الإذاعي لأذان وصلاة الفجر من المسجد الحرام</a></p>
+  <p class="link-line media-row"><a class="media aud" href="http://www.alijaber.net/audio/ali_jaber_alnahl1402.mp3" target="_blank" rel="noopener">استمع: مقطع قديم من البث الإذاعي لأذان وصلاة الفجر من المسجد الحرام</a></p>
 
   <div class="orn" aria-hidden="true"><svg viewBox="0 0 260 26" xmlns="http://www.w3.org/2000/svg" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 13H88"/><path d="M172 13H260"/><path d="M96 13H112" opacity=".6"/><path d="M148 13H164" opacity=".6"/><path d="M130 2l11 11-11 11-11-11z" fill="currentColor" fill-opacity=".16"/><path d="M130 7l6 6-6 6-6-6z"/><circle cx="91" cy="13" r="2.2" fill="currentColor"/><circle cx="169" cy="13" r="2.2" fill="currentColor"/></g></svg></div>
   <div class="pager">
@@ -773,7 +804,7 @@ h3 { display: block; width: fit-content; max-width: 100%; }
     <div>
       <h3>خطبة الخسوف في الحرم المكي</h3>
       <p>في منتصف شهر ربيع الأول صلى الشيخ علي جابر بالناس صلاة الخسوف في المسجد الحرام وخطب خطبة الخسوف ارتجالاً، فقرأ سورتي الكهف ويس وخطب خطبة موجزة بيّن فيها عظمة الله في تصريف هذا الكون وحث الناس على التوبة والعودة إلى الله.</p>
-      <p class="link-line"><a href="http://www.alijaber.net/ppt/AliJaber_PPT_CD_full/khosoof1402.mp3" target="_blank" rel="noopener">استمع: مقطع من خطبة الخسوف</a></p>
+      <p class="link-line media-row"><a class="media aud" href="http://www.alijaber.net/ppt/AliJaber_PPT_CD_full/khosoof1402.mp3" target="_blank" rel="noopener">استمع: مقطع من خطبة الخسوف</a></p>
     </div>
   </div>
 
@@ -848,6 +879,7 @@ h3 { display: block; width: fit-content; max-width: 100%; }
     <div>
       <h3>رجوعه إلى المدينة وتدريسه الفقه</h3>
       <p>رجع الشيخ إلى المدينة المنورة التي نشأ فيها وحفظ فيها القرآن وتلقى علومه الشرعية، وفيها سكن والدته ومقر عمله. وسجلت له حلقات تلفزيونية لتلاوة القرآن الكريم بطلب من التلفزيون السعودي، كانت تعرض في افتتاح البث وختامه، إذ كان يرى جواز التصوير المرئي خلافاً للرأي السائد آنذاك. وتأثرت صحته فابتعث في رحلة علمية إلى كندا، وعلاجية في الوقت نفسه.</p>
+      <p class="link-line media-row"><span class="soon">التلاوات المرئية: قريباً...</span></p>
     </div>
   </div>
 
@@ -857,7 +889,7 @@ h3 { display: block; width: fit-content; max-width: 100%; }
       <h3>كندا وتسجيل المصحف المرتل</h3>
       <p>سافر الشيخ إلى العاصمة الكندية أوتاوا في رحلة علمية ولبث فيها ثمانية أشهر وقضى فيها شهر رمضان. ومع مرضه سجل القرآن الكريم كاملاً بصوته في أحد المعامل الصوتية في كندا، بطلب من الملحق الثقافي السعودي آنذاك الدكتور عصام عابد شيخ الذي أولاه رعايته هناك. وسلمت النسخة الأصلية إلى جامعة الملك سعود بالرياض، وأهدت الجامعة نسخة منه إلى إذاعة القرآن الكريم بالرياض.</p>
       <p>ومع أن هذا التسجيل هو الذي تنشره الإذاعات والقنوات للشيخ، إلا أنه يختلف كثيراً عن جمال تلاوته في المسجد الحرام وغيره من المساجد، ربما لأنه سجل في مرض الشيخ وسفره وعلاجه.</p>
-      <p class="link-line"><a href="http://www.alijaber.net/q1.html" target="_blank" rel="noopener">المصحف المرتل بصوت الشيخ</a></p>
+      <p class="link-line media-row"><a class="media aud" href="http://www.alijaber.net/q1.html" target="_blank" rel="noopener">المصحف المرتل بصوت الشيخ</a></p>
     </div>
   </div>
 
@@ -866,6 +898,7 @@ h3 { display: block; width: fit-content; max-width: 100%; }
     <div>
       <h3>العودة من كندا</h3>
       <p>عاد الشيخ إلى المدينة المنورة في شهر ربيع الأول محاضراً في كلية التربية التابعة لجامعة الملك عبدالعزيز. وكتب رسالة خطية في الثالث والعشرين من ذي الحجة جواباً لأحد محبيه، ومما جاء فيها: «وأما عن الحرم والإمامة فيه، فقد طلبت الإعفاء من الإمامة ووافق المسؤولون على ذلك، لأنه ليس لدي رغبة في الانتقال من المدينة إلى غيرها».</p>
+      <p class="link-line media-row"><span class="soon">التلاوات المرئية: قريباً...</span></p>
     </div>
   </div>
 
@@ -910,11 +943,13 @@ h3 { display: block; width: fit-content; max-width: 100%; }
   </div>
 
   <div class="when">
-    <div class="yr"><b>١٤٠٨</b>هـ</div>
+    <div class="yr"><b>رمضان</b>١٤٠٨ هـ</div>
     <div>
       <h3>ثلاثة أئمة، وليلة كاملة لكل إمام</h3>
-      <p>وجه خطاب من رئيس شؤون الحرمين برغبة المقام السامي تكليف الشيخ علي عبدالله جابر للمشاركة في الإمامة بالمسجد الحرام لصلاة التراويح والقيام في رمضان ذلك العام. وكانت الطريقة المتبعة نادرة جداً: ينفرد كل إمام في ليلة يؤم فيها التراويح كاملة ويقرأ جزءاً كاملاً من القرآن ويزيد أحياناً، وفي الليلة التالية يؤم صاحب النوبة التالية. وكان الأئمة هم الشيخ علي الحذيفي والشيخ علي جابر والشيخ عبدالرحمن السديس، ويشاركهم الشيخ عبدالله الخليفي في الشفع والوتر.</p>
+      <p>في الثاني والعشرين من شعبان ١٤٠٨ هـ وجه خطاب من رئيس شؤون الحرمين إلى نائبه لشؤون المسجد النبوي، يفيده برغبة المقام السامي تكليف الشيخ علي عبدالله جابر للمشاركة في الإمامة بالمسجد الحرام لصلاة التراويح والقيام في رمضان ذلك العام. وعليه أُرسل في الخامس والعشرين من شعبان خطاب عاجل من نائب رئيس شؤون الحرمين لشؤون المسجد النبوي إلى الشيخ، بتكليفه إماماً مشاركاً، وطلب توجهه إلى مكة المكرمة قبيل حلول الشهر الكريم.</p>
+      <p>وكانت الطريقة المتبعة لإمامة صلاة القيام في هذا العام مختلفة ونادرة جداً، وهي مشاركة ثلاثة أئمة: ينفرد كل إمام في ليلة يؤم فيها التراويح كاملة ويقرأ جزءاً كاملاً من القرآن ويزيد أحياناً، وفي الليلة التالية يؤم صاحب النوبة التالية. وكان الأئمة هم الشيخ علي الحذيفي والشيخ علي جابر والشيخ عبدالرحمن السديس، ويشاركهم الشيخ عبدالله الخليفي في الشفع والوتر.</p>
       <p>وظهرت في هذا العام كثرة محبي قراءته بصورة واضحة، فكانت الليالي التي يؤم فيها تشهد ازدحاماً كبيراً لا يحصل في الليالي الأخرى، بل كانت تغلق محال تجارية كثيرة بجوار الحرم أثناء إمامته وتتصل الصفوف خارج الحرم بصورة أكبر.</p>
+      <p class="link-line media-row"><span class="soon">التلاوات المرئية: قريباً...</span></p>
     </div>
   </div>
 
@@ -951,7 +986,7 @@ h3 { display: block; width: fit-content; max-width: 100%; }
         <p>رفض كل العروض المقدمة له للإمامة خارج المملكة، وذكر أن عرضاً جاءه من أمير الشارقة والكويت، ولكنه آثر البقاء في المملكة بجوار بيت الله الحرام.</p>
         <cite>عبدالله ابن الشيخ علي جابر عن والده</cite>
       </blockquote>
-      <p class="link-line"><a href="http://www.alijaber.net/audio/Ali_Jaber--waqeah-Jeddah.mp3" target="_blank" rel="noopener">استمع: تسجيل نادر من صلاة العشاء بمسجد بقشان بجدة في أواخر حياته</a></p>
+      <p class="link-line media-row"><a class="media aud" href="http://www.alijaber.net/audio/Ali_Jaber--waqeah-Jeddah.mp3" target="_blank" rel="noopener">استمع: تسجيل نادر من صلاة العشاء بمسجد بقشان بجدة في أواخر حياته</a></p>
     </div>
   </div>
 
@@ -1113,7 +1148,7 @@ h3 { display: block; width: fit-content; max-width: 100%; }
     <div class="tl-dy" id="tlDy"></div>
     <div class="tl-dt" id="tlDt"></div>
     <div class="tl-dp" id="tlDp"></div>
-    <a id="tlDa" class="tl-go" href="#nasab" data-v="nasab">اقرأ في الفصل</a>
+    <div class="tl-links"><a id="tlDa" class="tl-go" href="#nasab" data-v="nasab">اقرأ في الفصل</a><span id="tlSoon" class="soon" hidden>التلاوات المرئية: قريباً...</span></div>
   </article>
   <div class="orn" aria-hidden="true"><svg viewBox="0 0 260 26" xmlns="http://www.w3.org/2000/svg" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 13H88"/><path d="M172 13H260"/><path d="M96 13H112" opacity=".6"/><path d="M148 13H164" opacity=".6"/><path d="M130 2l11 11-11 11-11-11z" fill="currentColor" fill-opacity=".16"/><path d="M130 7l6 6-6 6-6-6z"/><circle cx="91" cy="13" r="2.2" fill="currentColor"/><circle cx="169" cy="13" r="2.2" fill="currentColor"/></g></svg></div>
   <div class="pager">
@@ -1378,7 +1413,12 @@ h3 { display: block; width: fit-content; max-width: 100%; }
     bmGo.disabled = !bm;
     if (!bm) return;
     var v = viewEl(bm.v); if (!v) return;
-    var el = blocksOf(v)[bm.i]; if (el) el.classList.add('bm');
+    var list = blocksOf(v), el = list[bm.i];
+    if (bm.t && (!el || el.textContent.trim().slice(0, 60) !== bm.t)) {
+      el = null;
+      for (var q = 0; q < list.length; q++) { if (list[q].textContent.trim().slice(0, 60) === bm.t) { bm.i = q; save('seerah_bm', bm); el = list[q]; break; } }
+    }
+    if (el) el.classList.add('bm');
   }
   function firstVisible(sec) {
     var bar = document.querySelector('.bar'); var top = (bar ? bar.getBoundingClientRect().bottom : 0) + 16;
@@ -1388,7 +1428,8 @@ h3 { display: block; width: fit-content; max-width: 100%; }
   }
   $('tBmSave').addEventListener('click', function () {
     var sec = currentView(); if (!sec) return;
-    bm = { v: sec.getAttribute('data-view'), i: firstVisible(sec) };
+    var bi = firstVisible(sec), bb = blocksOf(sec)[bi];
+    bm = { v: sec.getAttribute('data-view'), i: bi, t: bb ? bb.textContent.trim().slice(0, 60) : '' };
     save('seerah_bm', bm); applyBm(); closeTools(); toast('تم حفظ العلامة');
   });
   bmGo.addEventListener('click', function () {
@@ -1414,10 +1455,21 @@ h3 { display: block; width: fit-content; max-width: 100%; }
     });
   }
   function applyAll() {
+    var changed = false;
     hls.forEach(function (h) {
-      var v = viewEl(h.v); if (!v) return; var b = blocksOf(v)[h.i]; if (!b) return;
+      var v = viewEl(h.v); if (!v) return;
+      var list = blocksOf(v), b = list[h.i];
+      if (!b || b.textContent.slice(h.s, h.e).slice(0, 120) !== h.t) {
+        b = null;
+        for (var q = 0; q < list.length; q++) {
+          var at = list[q].textContent.indexOf(h.t);
+          if (at >= 0) { var len = h.e - h.s; h.i = q; h.e = at + len; h.s = at; b = list[q]; changed = true; break; }
+        }
+      }
+      if (!b) return;
       try { wrap(b, h.s, h.e, h.id, !!h.note); } catch (x) {}
     });
+    if (changed) save('seerah_hl', hls);
   }
   function unwrap(id) {
     [].slice.call(document.querySelectorAll('mark.user-hl[data-id="' + id + '"]')).forEach(function (m) {
@@ -1532,9 +1584,11 @@ h3 { display: block; width: fit-content; max-width: 100%; }
     ['١٤٠٠', 'الماجستير وترك القضاء', 'ناقش رسالته في فقه عبدالله بن عمر ونال الماجستير بتقدير امتياز، واعتذر عن تولي القضاء، ثم أم المصلين في مسجد السبق.', 'malik'],
     ['١٤٠١', 'إمام الحرم المكي', 'عُيّن إماماً خاصاً للملك خالد، وفي ليلة ٢٣ رمضان أم المصلين في المسجد الحرام لأول مرة، ثم عُيّن إماماً رسمياً في شوال وهو في السابعة والعشرين.', 'malik'],
     ['١٤٠٢', 'الخسوف والمرض ووفاة الملك خالد', 'صلى صلاة الخسوف وخطب فيها ارتجالاً، ثم فقد صوته نحو ثلاثة أشهر، وتوفي الملك خالد في آخر شعبان.', 'haram'],
-    ['١٤٠٣', 'الاستقالة وكندا', 'طلب الإعفاء من الإمامة الرسمية وعاد إلى المدينة، ثم سافر إلى أوتاوا وسجل المصحف المرتل كاملاً.', 'haram'],
+    ['١٤٠٣', 'الاستقالة وكندا', 'طلب الإعفاء من الإمامة الرسمية وعاد إلى المدينة، ثم سافر إلى أوتاوا وسجل المصحف المرتل كاملاً.', 'haram', 'soon'],
+    ['١٤٠٤', 'العودة من كندا', 'عاد إلى المدينة في ربيع الأول محاضراً في كلية التربية، وكتب رسالة ذكر فيها أنه طلب الإعفاء من الإمامة لأنه لا يرغب في الانتقال من المدينة.', 'bada', 'soon'],
     ['١٤٠٦', 'العودة إلى القيام بالحرم', 'عاد في رمضان إماماً مشاركاً في صلاة القيام مع خمسة أئمة آخرين.', 'bada'],
     ['١٤٠٧', 'الدكتوراه', 'ناقش أطروحته في فقه القاسم بن محمد بن أبي بكر الصديق صبيحة ٢٣ رمضان، ونال الدكتوراه بمرتبة الشرف الأولى.', 'bada'],
+    ['١٤٠٨', 'رمضان بثلاثة أئمة', 'كُلّف بالمشاركة في القيام، وكان لكل إمام ليلة كاملة بجزء كامل أو أكثر. وازدحم الحرم في ليالي إمامته وأُغلقت محال كثيرة بجواره.', 'bada', 'soon'],
     ['١٤٠٩', 'أشهر تلاواته', 'سُجلت في هذا العام أشهر تلاواته، كتلاوته في سورة النساء عند ذكر المنافقين وفي آخر سورة يوسف، وهي آخر سنوات مشاركته في القيام بالحرم.', 'bada'],
     ['١٤١٠', 'الانتقال إلى جدة', 'انتقل إلى مقر جامعة الملك عبدالعزيز في جدة عضواً في هيئة التدريس، وكان الناس يقدمونه أحياناً للصلاة في مسجد بقشان.', 'bada'],
     ['١٤٢٦', 'وفاته رحمه الله', 'توفي ليلة الخميس الثالث عشر من ذي القعدة في جدة، وصُلي عليه في المسجد الحرام ودُفن في مقبرة الشرائع بمكة المكرمة.', 'khitam']
@@ -1556,6 +1610,9 @@ h3 { display: block; width: fit-content; max-width: 100%; }
     $('tlDp').textContent = ev[2];
     var a = $('tlDa'); a.href = '#' + ev[3]; a.setAttribute('data-v', ev[3]); a.textContent = 'اقرأ في فصل: ' + CH[ev[3]];
     if (scroll) items[k].scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+    var sn = $('tlSoon');
+    sn.hidden = true;
+    if (ev[4] === 'soon') { sn.hidden = false; }
     selectEv.cur = k;
   }
   selectEv(0, false);
