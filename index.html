@@ -275,17 +275,6 @@ html.reading .bar, html.reading .qcopy, html.reading .share, html.reading .draft
 html.reading .wrap { max-width: 640px; }
 html.reading body { line-height: 2.3; }
 .tl-hint { font-family: var(--f-label); font-size: 14px; color: var(--muted); }
-.tl-scroll { overflow-x: auto; max-width: 100%; padding-block: 8px 14px; border-block: 1px solid var(--rule); background: var(--surface); }
-.tl { list-style: none; margin: 0; padding: 0 12px; display: flex; width: max-content; position: relative; }
-.tl::before { content: ""; position: absolute; right: 0; left: 0; top: 19px; height: 2px; background: var(--rule); }
-.tl li { position: relative; width: 132px; flex: none; padding-top: 34px; }
-.tl li::before { content: ""; position: absolute; top: 12px; right: 50%; transform: translateX(50%); width: 14px; height: 14px; border-radius: 50%; background: var(--surface); border: 2px solid var(--gold); z-index: 1; transition: background .2s ease, transform .2s ease; }
-.tl li.sel::before { background: var(--accent); border-color: var(--accent); transform: translateX(50%) scale(1.25); }
-.tl-item { display: grid; gap: 2px; width: 100%; font: inherit; text-align: center; color: var(--fg); background: transparent; border: 0; padding: 4px 6px; cursor: pointer; line-height: 1.6; border-radius: 3px; }
-.tl-y { font-family: var(--f-display); font-weight: 700; font-size: 20px; color: var(--gold); }
-.tl-t { font-family: var(--f-label); font-size: 13px; color: var(--muted); }
-li.sel .tl-y { color: var(--accent); }
-li.sel .tl-t { color: var(--fg); }
 .tl-detail { margin-top: 18px; background: var(--surface); border: 1px solid var(--rule); border-radius: 4px; padding: 18px 20px; min-height: 150px; }
 .tl-dy { font-family: var(--f-label); font-size: 14px; color: var(--gold); letter-spacing: .06em; }
 .tl-dt { font-family: var(--f-display); font-weight: 700; font-size: 26px; color: var(--accent); line-height: 1.7; }
@@ -414,17 +403,63 @@ blockquote::before { content: "\201D"; position: absolute; top: -6px; inset-inli
 .when h3 { position: relative; padding-bottom: 6px; }
 .when h3::after { content: ""; display: block; width: 36px; height: 2px; margin-top: 6px; border-radius: 2px; background: linear-gradient(90deg, var(--gold), transparent); }
 .tl-detail { border-radius: 12px; box-shadow: 0 10px 30px -18px color-mix(in srgb, var(--fg) 50%, transparent); }
-.tl-item { transition: transform .2s ease; }
-.tl-item:hover { transform: translateY(-2px); }
 .tabs a { transition: background .2s ease, color .2s ease; }
 .fig .arch { box-shadow: 0 14px 34px -20px color-mix(in srgb, var(--fg) 55%, transparent); }
 footer { position: relative; padding-top: 28px; }
 footer::before { content: "\2766"; display: block; text-align: center; font-size: 22px; color: var(--gold); margin-bottom: 10px; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .tl-item:hover { transform: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 .image-box { width: min(240px, 62vw); aspect-ratio: 1; margin: 18px auto 6px; border-radius: 22px; overflow: hidden; border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent); box-shadow: 0 14px 34px -18px color-mix(in srgb, var(--fg) 55%, transparent); }
 .image-box[hidden] { display: none; }
 .image-box img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ===== v3: دائرة زمنية، بطاقة الفصل، زخارف المراحل، ورق القراءة، تقليب الصفحات، حرف مخطوط ===== */
+.tlc { --size: min(calc(100vw - 32px), 440px); --R: calc(var(--size) * .41); position: relative; width: var(--size); height: var(--size); margin: 14px auto 8px; overflow: clip; }
+.tlc::before { content: ""; position: absolute; inset: calc(50% - var(--R)); border-radius: 50%; border: 1.5px solid color-mix(in srgb, var(--gold) 55%, transparent); box-shadow: 0 0 0 7px color-mix(in srgb, var(--gold) 7%, transparent), inset 0 0 0 7px color-mix(in srgb, var(--gold) 7%, transparent); }
+.tlc::after { content: ""; position: absolute; inset: calc(50% - var(--R) * .66); border-radius: 50%; border: 1px dashed color-mix(in srgb, var(--gold) 40%, transparent); }
+.tlc-pin { position: absolute; top: 1px; left: 50%; width: 0; height: 0; margin-left: -7px; border-inline: 7px solid transparent; border-top: 10px solid var(--accent); z-index: 2; }
+.tlc-ring { position: absolute; inset: 0; transition: transform .9s cubic-bezier(.4, .1, .2, 1); }
+.tlc-n { position: absolute; top: 50%; left: 50%; width: 0; height: 0; transform: rotate(var(--th)) translateY(calc(var(--R) * -1)); }
+.tlc-b { position: absolute; top: 0; left: 0; min-width: 38px; padding: 1px 7px; font-family: var(--f-display); font-weight: 700; font-size: 14px; line-height: 1.7; color: var(--accent); background: var(--surface); border: 1.5px solid var(--gold); border-radius: 999px; cursor: pointer; transition: transform .9s cubic-bezier(.4, .1, .2, 1), background .3s ease, color .3s ease, box-shadow .3s ease; }
+.tlc-b:hover { background: color-mix(in srgb, var(--gold) 16%, var(--surface)); }
+.tlc-b.sel { background: var(--accent); color: var(--on-accent); border-color: var(--accent); box-shadow: 0 6px 16px -6px color-mix(in srgb, var(--accent) 70%, transparent); z-index: 3; }
+.tlc-mid { position: absolute; inset: calc(50% - var(--R) * .56); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 2px; }
+.tlc-y { font-family: var(--f-display); font-weight: 700; font-size: clamp(26px, calc(var(--size) * .1), 44px); line-height: 1.3; color: var(--accent); }
+.tlc-t { font-family: var(--f-label); font-size: clamp(12px, calc(var(--size) * .036), 16px); line-height: 1.7; color: var(--muted); max-width: 100%; }
+@media (min-width: 420px) { .tlc-b { font-size: 16px; min-width: 42px; } }
+
+.chapcard { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; pointer-events: none; opacity: 0; transition: opacity .3s ease; }
+.chapcard.on { opacity: 1; }
+.cc-in { min-width: min(78vw, 340px); max-width: 86vw; text-align: center; padding: 22px 30px 16px; background: color-mix(in srgb, var(--surface) 94%, transparent); border: 1px solid var(--gold); border-radius: 14px; outline: 1px solid color-mix(in srgb, var(--gold) 40%, transparent); outline-offset: 5px; box-shadow: 0 24px 60px -24px rgba(0, 0, 0, .55); color: var(--accent); transform: scale(.94); transition: transform .45s cubic-bezier(.2, .7, .2, 1); }
+.chapcard.on .cc-in { transform: none; }
+.cc-no { font-family: var(--f-label); font-size: 13px; letter-spacing: .1em; color: var(--gold); }
+.cc-t { font-family: var(--f-display); font-weight: 700; font-size: 26px; line-height: 1.7; color: var(--accent); }
+.cc-o { width: 120px; height: 14px; color: var(--gold); margin-top: 4px; }
+
+body::after { content: ""; position: fixed; inset: 0; z-index: -2; pointer-events: none; --g: color-mix(in srgb, var(--gold) 11%, transparent); }
+[data-stage="medina"] body::after { background: repeating-linear-gradient(45deg, var(--g) 0 1px, transparent 1px 38px), repeating-linear-gradient(-45deg, var(--g) 0 1px, transparent 1px 38px); }
+[data-stage="haram"] body::after { background: radial-gradient(70% 42% at 50% 0, color-mix(in srgb, var(--gold) 16%, transparent), transparent), radial-gradient(circle, var(--g) 1.4px, transparent 1.8px) 0 0 / 30px 30px; }
+[data-stage="canada"] body::after { background: linear-gradient(180deg, color-mix(in srgb, var(--accent) 9%, transparent), transparent 45%), repeating-linear-gradient(0deg, color-mix(in srgb, var(--accent) 9%, transparent) 0 1px, transparent 1px 34px); }
+section.view { --arm: 26px; --t: 1px; }
+[data-stage="haram"] section.view { --arm: 40px; --t: 2px; }
+[data-stage="canada"] section.view { --arm: 20px; --t: 1px; }
+section.view::before { content: ""; position: absolute; inset: 0 -8px; z-index: -1; pointer-events: none; --c: color-mix(in srgb, var(--gold) 62%, transparent); background: linear-gradient(var(--c), var(--c)) top right / var(--arm) var(--t) no-repeat, linear-gradient(var(--c), var(--c)) top right / var(--t) var(--arm) no-repeat, linear-gradient(var(--c), var(--c)) top left / var(--arm) var(--t) no-repeat, linear-gradient(var(--c), var(--c)) top left / var(--t) var(--arm) no-repeat, linear-gradient(var(--c), var(--c)) bottom right / var(--arm) var(--t) no-repeat, linear-gradient(var(--c), var(--c)) bottom right / var(--t) var(--arm) no-repeat, linear-gradient(var(--c), var(--c)) bottom left / var(--arm) var(--t) no-repeat, linear-gradient(var(--c), var(--c)) bottom left / var(--t) var(--arm) no-repeat; }
+[data-stage="canada"] section.view::before { border-radius: 14px; }
+
+html.reading body { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .27 0 0 0 0 .15 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+html.reading main.wrap { position: relative; margin-block: 18px; padding: 8px 22px 12px; border-radius: 3px; background-color: color-mix(in srgb, var(--surface) 90%, var(--gold)); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .18 0 0 0 .1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); box-shadow: 0 0 0 1px var(--rule), 0 26px 60px -28px rgba(0, 0, 0, .55), inset 0 0 70px color-mix(in srgb, var(--gold) 12%, transparent), inset 12px 0 18px -14px rgba(0, 0, 0, .25); }
+html.reading main.wrap::after { content: ""; position: absolute; top: 0; left: 0; width: 38px; height: 38px; background: linear-gradient(225deg, var(--bg) 50%, color-mix(in srgb, var(--gold) 28%, var(--surface)) 50%); box-shadow: -4px 4px 8px -2px rgba(0, 0, 0, .28); border-bottom-right-radius: 4px; }
+html.reading section.view::before { display: none; }
+
+body { overflow-x: clip; }
+@keyframes flipF { from { opacity: 0; transform: perspective(1500px) rotateY(64deg) translateX(-24px); } to { opacity: 1; transform: none; } }
+@keyframes flipB { from { opacity: 0; transform: perspective(1500px) rotateY(-64deg) translateX(24px); } to { opacity: 1; transform: none; } }
+section.view.flip-f:not([hidden]) { transform-origin: 100% 50%; animation: flipF .8s cubic-bezier(.2, .7, .2, 1) backwards; }
+section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .8s cubic-bezier(.2, .7, .2, 1) backwards; }
+
+.dropword { font-size: 2.15em; line-height: .85; padding-inline-end: .1em; background: linear-gradient(160deg, var(--gold) 0%, color-mix(in srgb, var(--gold) 50%, #fff) 42%, var(--accent) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+@supports not ((background-clip: text) or (-webkit-background-clip: text)) { .dropword { color: var(--gold); -webkit-text-fill-color: currentColor; } }
+@media (prefers-reduced-motion: reduce) { .tlc-ring, .tlc-b, .chapcard, .cc-in { transition: none; } }
 </style>
 
 </head>
@@ -1174,8 +1209,12 @@ footer::before { content: "\2766"; display: block; text-align: center; font-size
   <p class="chap-no">الخط الزمني</p>
   <h2>حياة الشيخ في خط زمني</h2>
   <div class="orn" aria-hidden="true"><svg viewBox="0 0 260 26" xmlns="http://www.w3.org/2000/svg" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 13H88"/><path d="M172 13H260"/><path d="M96 13H112" opacity=".6"/><path d="M148 13H164" opacity=".6"/><path d="M130 2l11 11-11 11-11-11z" fill="currentColor" fill-opacity=".16"/><path d="M130 7l6 6-6 6-6-6z"/><circle cx="91" cy="13" r="2.2" fill="currentColor"/><circle cx="169" cy="13" r="2.2" fill="currentColor"/></g></svg></div>
-  <p class="tl-hint">مرّر الشريط جانباً، واضغط على أي سنة لتقرأ ما حدث فيها. يمكنك أيضاً استعمال سهمي لوحة المفاتيح.</p>
-  <div class="tl-scroll" id="tlScroll"><ol class="tl" id="tlList"></ol></div>
+  <p class="tl-hint">اضغط على أي سنة فتدور الدائرة إليها ويظهر ما حدث فيها. يمكنك أيضاً استعمال أسهم لوحة المفاتيح.</p>
+  <div class="tlc" id="tlc" role="group" aria-label="الخط الزمني الدائري">
+    <span class="tlc-pin" aria-hidden="true"></span>
+    <div class="tlc-ring" id="tlRing"></div>
+    <div class="tlc-mid" aria-hidden="true"><span class="tlc-y" id="tlcY"></span><span class="tlc-t" id="tlcT"></span></div>
+  </div>
   <article class="tl-detail" id="tlDetail" aria-live="polite">
     <div class="tl-dy" id="tlDy"></div>
     <div class="tl-dt" id="tlDt"></div>
@@ -1190,6 +1229,8 @@ footer::before { content: "\2766"; display: block; text-align: center; font-size
 </section>
 
 </main>
+
+<div class="chapcard" id="chapCard" aria-hidden="true"><div class="cc-in"><div class="cc-no" id="ccNo"></div><div class="cc-t" id="ccT"></div><svg class="cc-o" viewBox="0 0 120 14" xmlns="http://www.w3.org/2000/svg" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 7H46M74 7H120"/><path d="M60 1l6 6-6 6-6-6z" fill="currentColor" fill-opacity=".2"/></g></svg></div></div>
 
 <footer>
   سيرة الشيخ الدكتور علي بن عبدالله بن علي جابر، رحمه الله<br>
@@ -1625,32 +1666,43 @@ footer::before { content: "\2766"; display: block; text-align: center; font-size
     ['١٤١٠', 'الانتقال إلى جدة', 'انتقل إلى مقر جامعة الملك عبدالعزيز في جدة عضواً في هيئة التدريس، وكان الناس يقدمونه أحياناً للصلاة في مسجد بقشان.', 'bada'],
     ['١٤٢٦', 'وفاته رحمه الله', 'توفي ليلة الخميس الثالث عشر من ذي القعدة في جدة، وصُلي عليه في المسجد الحرام ودُفن في مقبرة الشرائع بمكة المكرمة.', 'khitam']
   ];
-  var tlList = $('tlList'), items = [];
+  var tlc = $('tlc'), ring = $('tlRing'), N = EV.length, items = [], alpha = 0;
   EV.forEach(function (ev, k) {
-    var li = document.createElement('li'), b = document.createElement('button');
-    b.type = 'button'; b.className = 'tl-item'; b.setAttribute('aria-pressed', 'false');
-    var y = document.createElement('span'); y.className = 'tl-y'; y.textContent = ev[0];
-    var t = document.createElement('span'); t.className = 'tl-t'; t.textContent = ev[1];
-    b.appendChild(y); b.appendChild(t); li.appendChild(b); tlList.appendChild(li); items.push(li);
-    b.addEventListener('click', function () { selectEv(k, true); });
+    var th = k * 360 / N;
+    var n = document.createElement('div'); n.className = 'tlc-n'; n.style.setProperty('--th', th.toFixed(3) + 'deg');
+    var bt = document.createElement('button'); bt.type = 'button'; bt.className = 'tlc-b'; bt.setAttribute('aria-pressed', 'false');
+    bt.textContent = ev[0]; bt.setAttribute('aria-label', ev[0] + ' هـ: ' + ev[1]);
+    n.appendChild(bt); ring.appendChild(n); items.push(bt);
+    bt.addEventListener('click', function () { selectEv(k, true); });
   });
+  function place() {
+    items.forEach(function (bt, k) {
+      var th = k * 360 / N, on = k === selectEv.cur;
+      bt.style.transform = 'translate(-50%, -50%) rotate(' + (-(th + alpha)).toFixed(2) + 'deg) scale(' + (on ? 1.28 : 1) + ')';
+    });
+    ring.style.transform = 'rotate(' + alpha.toFixed(2) + 'deg)';
+  }
   function selectEv(k, scroll) {
-    k = Math.max(0, Math.min(EV.length - 1, k)); var ev = EV[k];
-    items.forEach(function (li, j) { li.classList.toggle('sel', j === k); li.firstChild.setAttribute('aria-pressed', String(j === k)); });
+    k = ((k % N) + N) % N; var ev = EV[k];
+    var target = -k * 360 / N;
+    alpha += ((target - alpha) % 360 + 540) % 360 - 180;
+    selectEv.cur = k;
+    items.forEach(function (bt, j) { bt.classList.toggle('sel', j === k); bt.setAttribute('aria-pressed', String(j === k)); });
+    place();
+    $('tlcY').textContent = ev[0] + ' هـ';
+    $('tlcT').textContent = ev[1];
     $('tlDy').textContent = ev[0] + ' هـ';
     $('tlDt').textContent = ev[1];
     $('tlDp').textContent = ev[2];
     var a = $('tlDa'); a.href = '#' + ev[3]; a.setAttribute('data-v', ev[3]); a.textContent = 'اقرأ في فصل: ' + CH[ev[3]];
-    if (scroll) items[k].scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
     var sn = $('tlSoon');
-    sn.hidden = true;
-    if (ev[4] === 'soon') { sn.hidden = false; }
-    selectEv.cur = k;
+    sn.hidden = ev[4] !== 'soon';
   }
-  selectEv(0, false);
-  tlList.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowLeft') { e.preventDefault(); selectEv(selectEv.cur + 1, true); items[selectEv.cur].firstChild.focus(); }
-    if (e.key === 'ArrowRight') { e.preventDefault(); selectEv(selectEv.cur - 1, true); items[selectEv.cur].firstChild.focus(); }
+  selectEv.cur = 0; selectEv(0, false);
+  tlc.addEventListener('keydown', function (e) {
+    var d = (e.key === 'ArrowLeft' || e.key === 'ArrowDown') ? 1 : (e.key === 'ArrowRight' || e.key === 'ArrowUp') ? -1 : 0;
+    if (!d) return;
+    e.preventDefault(); selectEv(selectEv.cur + d, true); items[selectEv.cur].focus();
   });
 })();
 </script>
@@ -1720,18 +1772,23 @@ footer::before { content: "\2766"; display: block; text-align: center; font-size
     items = [].slice.call(document.querySelectorAll('.m-svg')).map(function (svg) {
       var g = [svg.querySelector('.m-l1'), svg.querySelector('.m-l2'), svg.querySelector('.m-l3')];
       g.forEach(function (x) { if (x) x.style.animation = 'none'; });
-      return { svg: svg, box: svg.parentElement, g: g, a: [Math.random() * 360, Math.random() * 360, Math.random() * 360] };
+      return { svg: svg, box: svg.parentElement, sec: svg.parentElement.classList.contains('m-sec'), g: g, a: [Math.random() * 360, Math.random() * 360, Math.random() * 360] };
     });
   }
   collect();
   if (!reduce) {
-    var last = performance.now();
+    var last = performance.now(), lastY = window.scrollY, sv = 0;
     (function tick(now) {
       var dt = Math.min(0.1, (now - last) / 1000); last = now;
-      mul += (target - mul) * (1 - Math.exp(-dt / 1.1));
+      var y = window.scrollY, dy = Math.abs(y - lastY); lastY = y;
+      sv += ((dy / Math.max(dt, 0.001)) - sv) * (1 - Math.exp(-dt / 0.25));
+      var want = Math.max(target, 1 + Math.min(11, sv / 140));
+      mul += (want - mul) * (1 - Math.exp(-dt / (want > mul ? 0.5 : 1.6)));
+      var glow = Math.min(1, (mul - 1) / 8);
       for (var i = 0; i < items.length; i++) {
         var it = items[i];
         if (!it.box.getClientRects().length) continue;
+        if (it.sec) it.box.style.opacity = (0.17 + 0.14 * glow).toFixed(3);
         for (var j = 0; j < 3; j++) { it.a[j] += SP[j] * mul * dt; it.g[j].style.transform = 'rotate(' + it.a[j].toFixed(2) + 'deg)'; }
       }
       requestAnimationFrame(tick);
@@ -1754,6 +1811,32 @@ footer::before { content: "\2766"; display: block; text-align: center; font-size
     window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(sheen); } }, { passive: true });
     sheen();
   }
+})();
+</script>
+
+<script>
+(function () {
+  var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var names = ['intro','nasab','hifz','ilm','malik','haram','bada','athar','fikr','khitam','timeline'];
+  var card = document.getElementById('chapCard'), no = document.getElementById('ccNo'), tt = document.getElementById('ccT');
+  var cur0 = document.querySelector('section.view:not([hidden])');
+  var last = cur0 ? cur0.getAttribute('data-view') : 'intro', hide;
+  document.addEventListener('seerah:view', function (e) {
+    var name = e.detail; if (!name || name === last) return;
+    var from = names.indexOf(last), to = names.indexOf(name); last = name;
+    var sec = document.getElementById('v-' + name); if (!sec) return;
+    if (reduce) return;
+    sec.classList.remove('flip-f', 'flip-b'); void sec.offsetWidth;
+    var cls = to >= from ? 'flip-f' : 'flip-b'; sec.classList.add(cls);
+    setTimeout(function () { sec.classList.remove(cls); }, 900);
+    var tab = document.querySelector('.tabs a[data-v="' + name + '"]');
+    var label = tab ? tab.textContent.trim() : '';
+    var cn = sec.querySelector('.chap-no'), h2 = sec.querySelector('h2');
+    no.textContent = cn ? cn.textContent.trim() : 'سيرة الشيخ علي جابر';
+    tt.textContent = h2 ? h2.textContent.trim() : label;
+    card.classList.add('on'); clearTimeout(hide);
+    hide = setTimeout(function () { card.classList.remove('on'); }, 1050);
+  });
 })();
 </script>
 
