@@ -453,6 +453,11 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3
 .dropword { font-size: 2.15em; line-height: .85; padding-inline-end: .1em; background: linear-gradient(160deg, var(--gold) 0%, color-mix(in srgb, var(--gold) 50%, #fff) 42%, var(--accent) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
 @supports not ((background-clip: text) or (-webkit-background-clip: text)) { .dropword { color: var(--gold); -webkit-text-fill-color: currentColor; } }
 @media (prefers-reduced-motion: reduce) { .tlc-ring, .tlc-b { transition: none; } }
+
+.splash-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.splash-btn.alt { background: transparent; color: var(--accent); border: 1px solid var(--accent); }
+.splash-btn.alt:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); filter: none; }
+.lead-note { font-family: var(--f-label); font-size: 15px; color: var(--muted); line-height: 1.9; }
 </style>
 
 </head>
@@ -479,6 +484,7 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3
       <a href="#fikr" data-v="fikr">الفكر والأخلاق</a>
       <a href="#khitam" data-v="khitam">الوفاة</a>
       <a href="#timeline" data-v="timeline">الخط الزمني</a>
+      <a href="#tilawa" data-v="tilawa">التلاوات</a>
     </nav>
   </div>
   <div id="searchPanel" class="searchpanel" hidden>
@@ -508,7 +514,7 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3
   <p class="splash-eyebrow">سيرة إمام المسجد الحرام</p>
   <h1 class="splash-name">الشيخ الدكتور علي جابر</h1>
   <p class="splash-years">١٣٧٣ هـ — ١٤٢٦ هـ · رحمه الله</p>
-  <button type="button" id="splashGo" class="splash-btn">ابدأ القراءة</button>
+  <div class="splash-btns"><button type="button" id="splashGo" class="splash-btn">قراءة السيرة</button><button type="button" id="splashTil" class="splash-btn alt">قسم التلاوة</button></div>
 </div>
 <script>
 (function () {
@@ -523,6 +529,8 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3
     setTimeout(function () { el.hidden = true; }, 800);
   }
   b.addEventListener('click', close);
+  var tb = document.getElementById('splashTil');
+  if (tb) tb.addEventListener('click', function () { close(); location.hash = '#tilawa'; });
   document.addEventListener('keydown', function (e) { if (!el.hidden && (e.key === 'Escape' || e.key === 'Enter')) close(); });
   try { b.focus({ preventScroll: true }); } catch (e) {}
 })();
@@ -1221,6 +1229,81 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3
   </div>
 </section>
 
+<section class="view" id="v-tilawa" data-view="tilawa" hidden>
+  <p class="chap-no">قسم التلاوات</p>
+  <h2>تلاوات الشيخ مرتبة بحسب الأعوام</h2>
+  <div class="orn" aria-hidden="true"><svg viewBox="0 0 260 26" xmlns="http://www.w3.org/2000/svg" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 13H88"/><path d="M172 13H260"/><path d="M96 13H112" opacity=".6"/><path d="M148 13H164" opacity=".6"/><path d="M130 2l11 11-11 11-11-11z" fill="currentColor" fill-opacity=".16"/><path d="M130 7l6 6-6 6-6-6z"/><circle cx="91" cy="13" r="2.2" fill="currentColor"/><circle cx="169" cy="13" r="2.2" fill="currentColor"/></g></svg></div>
+  <p class="lead-note">التلاوات مرتبة بحسب الأعوام من الأقدم إلى الأحدث، وستُضاف تباعاً.</p>
+  <div class="when">
+    <div class="yr"><b>١٤٠١</b>هـ</div>
+    <div>
+      <h3>تراويح الحرم المكي</h3>
+      <p class="link-line media-row"><a class="media aud" href="https://tilawatalharamain1.com/makki/1401/9/Alijaber/2025-08-28-18-30-30-5581850.m4a" target="_blank" rel="noopener">استمع: ليلة ٢٣ رمضان ١٤٠١ هـ</a><a class="media aud" href="https://tilawatalharamain1.com/makki/1401/9/Alijaber/2025-08-28-18-32-12-7318272.m4a" target="_blank" rel="noopener">استمع: ليلة ٢٤ رمضان ١٤٠١ هـ</a><a class="media aud" href="https://tilawatalharamain1.com/makki/1401/9/Alijaber/2025-08-28-18-33-19-6825493.m4a" target="_blank" rel="noopener">استمع: ليلة ٢٥ رمضان ١٤٠١ هـ</a><a class="media aud" href="https://tilawatalharamain1.com/makki/1401/9/Alijaber/2025-08-28-18-34-38-6735803.m4a" target="_blank" rel="noopener">استمع: ليلة ٢٦ رمضان ١٤٠١ هـ</a><a class="media aud" href="https://tilawatalharamain1.com/makki/1401/9/Alijaber/2025-08-28-18-42-53-5445355.m4a" target="_blank" rel="noopener">استمع: ليلة ٢٧ رمضان ١٤٠١ هـ</a><a class="media aud" href="https://tilawatalharamain1.com/makki/1401/9/Alijaber/2025-08-28-18-44-19-6247391.m4a" target="_blank" rel="noopener">استمع: ليلة ٢٨ رمضان ١٤٠١ هـ</a><a class="media aud" href="https://tilawatalharamain1.com/makki/1401/9/Alijaber/2025-08-28-18-45-54-1487092.mp3" target="_blank" rel="noopener">استمع: الشفع والوتر مع الدعاء</a></p>
+    </div>
+  </div>
+  <div class="when">
+    <div class="yr"><b>١٤٠٢</b>هـ</div>
+    <div>
+      <h3>تلاوات عام ١٤٠٢ هـ</h3>
+      <p class="link-line media-row"><span class="soon">قريباً...</span></p>
+    </div>
+  </div>
+  <div class="when">
+    <div class="yr"><b>١٤٠٣</b>هـ</div>
+    <div>
+      <h3>تلاوات عام ١٤٠٣ هـ</h3>
+      <p class="link-line media-row"><span class="soon">قريباً...</span></p>
+    </div>
+  </div>
+  <div class="when">
+    <div class="yr"><b>١٤٠٤</b>هـ</div>
+    <div>
+      <h3>تلاوات عام ١٤٠٤ هـ</h3>
+      <p class="link-line media-row"><span class="soon">قريباً...</span></p>
+    </div>
+  </div>
+  <div class="when">
+    <div class="yr"><b>١٤٠٦</b>هـ</div>
+    <div>
+      <h3>تلاوات عام ١٤٠٦ هـ</h3>
+      <p class="link-line media-row"><span class="soon">قريباً...</span></p>
+    </div>
+  </div>
+  <div class="when">
+    <div class="yr"><b>١٤٠٧</b>هـ</div>
+    <div>
+      <h3>تلاوات عام ١٤٠٧ هـ</h3>
+      <p class="link-line media-row"><span class="soon">قريباً...</span></p>
+    </div>
+  </div>
+  <div class="when">
+    <div class="yr"><b>١٤٠٨</b>هـ</div>
+    <div>
+      <h3>تلاوات عام ١٤٠٨ هـ</h3>
+      <p class="link-line media-row"><span class="soon">قريباً...</span></p>
+    </div>
+  </div>
+  <div class="when">
+    <div class="yr"><b>١٤٠٩</b>هـ</div>
+    <div>
+      <h3>تلاوات عام ١٤٠٩ هـ</h3>
+      <p class="link-line media-row"><span class="soon">قريباً...</span></p>
+    </div>
+  </div>
+  <div class="when">
+    <div class="yr"><b>١٤١٠</b>هـ</div>
+    <div>
+      <h3>تلاوات عام ١٤١٠ هـ</h3>
+      <p class="link-line media-row"><span class="soon">قريباً...</span></p>
+    </div>
+  </div>
+  <div class="orn" aria-hidden="true"><svg viewBox="0 0 260 26" xmlns="http://www.w3.org/2000/svg" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.2"><path d="M0 13H88"/><path d="M172 13H260"/><path d="M96 13H112" opacity=".6"/><path d="M148 13H164" opacity=".6"/><path d="M130 2l11 11-11 11-11-11z" fill="currentColor" fill-opacity=".16"/><path d="M130 7l6 6-6 6-6-6z"/><circle cx="91" cy="13" r="2.2" fill="currentColor"/><circle cx="169" cy="13" r="2.2" fill="currentColor"/></g></svg></div>
+  <div class="pager">
+    <a class="ghost" href="#timeline" data-v="timeline">السابق: الخط الزمني</a>
+    <a href="#intro" data-v="intro">العودة إلى البداية</a>
+  </div>
+</section>
+
 </main>
 
 
@@ -1233,7 +1316,7 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3
 (function () {
   var views = document.querySelectorAll('section.view');
   var links = document.querySelectorAll('.tabs a');
-  var names = ['intro','nasab','hifz','ilm','malik','haram','bada','athar','fikr','khitam','timeline'];
+  var names = ['intro','nasab','hifz','ilm','malik','haram','bada','athar','fikr','khitam','timeline','tilawa'];
   function show(name) {
     if (names.indexOf(name) < 0) name = 'intro';
     views.forEach(function (v) { v.hidden = v.getAttribute('data-view') !== name; });
@@ -1705,7 +1788,7 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3
   var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
   /* ===== 1) مراحل الحياة: لون وماندالا لكل مرحلة ===== */
-  var STAGE = { intro: 'medina', nasab: 'medina', hifz: 'medina', ilm: 'medina', malik: 'haram', haram: 'haram', bada: 'canada', athar: 'medina', fikr: 'medina', khitam: 'medina', timeline: 'medina' };
+  var STAGE = { intro: 'medina', nasab: 'medina', hifz: 'medina', ilm: 'medina', malik: 'haram', haram: 'haram', bada: 'canada', athar: 'medina', fikr: 'medina', khitam: 'medina', timeline: 'medina', tilawa: 'haram' };
   function applyStage(name) { root.setAttribute('data-stage', STAGE[name] || 'medina'); }
   document.addEventListener('seerah:view', function (e) { applyStage(e.detail); });
   var cur = document.querySelector('section.view:not([hidden])');
@@ -1758,6 +1841,7 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3
     athar:  { star: [14, 187, 158], dots: 14, big: [14, 26], small: [14, 10], s1: [14, 3, 106], s2: [7, 2, 66], inner: 7 },
     fikr:   { star: [9, 187, 150], dots: 18, big: [9, 38], small: [18, 9], s1: [9, 2, 106], s2: [9, 4, 66], inner: 9, poly: 3 },
     khitam: { star: [7, 187, 140], dots: 7, big: [7, 44], small: [7, 16], s1: [7, 2, 106], s2: [7, 3, 66], inner: 7 },
+    tilawa: { star: [18, 187, 160], dots: 18, big: [9, 46], small: [18, 10], s1: [18, 5, 106], s2: [9, 2, 66], inner: 9, ros: [9, 130, 12] },
     timeline: { star: [20, 187, 166], dots: 40, big: [20, 22], small: [20, 8], s1: [20, 9, 106], s2: [10, 3, 66], inner: 10, ros: [20, 130, 6] }
   };
   [].forEach.call(document.querySelectorAll('section.view'), function (sec) {
@@ -1820,7 +1904,7 @@ section.view.flip-b:not([hidden]) { transform-origin: 0 50%; animation: flipB .3
 <script>
 (function () {
   var reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  var names = ['intro','nasab','hifz','ilm','malik','haram','bada','athar','fikr','khitam','timeline'];
+  var names = ['intro','nasab','hifz','ilm','malik','haram','bada','athar','fikr','khitam','timeline','tilawa'];
   var cur0 = document.querySelector('section.view:not([hidden])');
   var last = cur0 ? cur0.getAttribute('data-view') : 'intro', busy;
   document.addEventListener('seerah:view', function (e) {
